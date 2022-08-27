@@ -4,7 +4,7 @@
       <div class=" w-11/12 md:w-1/2">
         <div class="w-full relative">
           <h2 class="text-dark-cyan font-bold">Bill</h2>
-          <input v-model="bill" type="number"
+          <input @change="calculate" v-model="bill" type="number"
                  class="appearance-none w-full md:w-11/12 text-dark-cyan my-2 h-9 bg-light-grey outline-none rounded p-4 font-bold text-lg"
                  dir="rtl" min="0">
           <svg class="absolute bottom-[18px] left-3" xmlns="http://www.w3.org/2000/svg" width="11" height="17">
@@ -30,9 +30,8 @@
             <div @click="selectCategory(50)" :class="{'active-state': fifth}" class="percantage-card">
               <p class="percantage-text">{{ fifty }}</p>
             </div>
-            <div class="custom-card">
-              <p class="custom-text">Custom</p>
-            </div>
+            <input @click="btn" @change="calculate" v-model="val" :value="val" :type="type"
+                   class="custom-card custom-text">
           </div>
         </div>
         <div class="w-11/12 relative">
@@ -78,28 +77,37 @@ export default {
       people: null,
       tip: '',
       total: '',
+      type: 'button',
+      val: 'Custom',
     }
   },
 
   methods: {
+    btn() {
+      this.type = 'number'
+      this.val = null
+    },
     calculate() {
       // your code goes here
-      console.log(this.people)
       if (this.first) {
-        this.tip = (this.bill * (5 / 100)) / this.people;
-        this.total = ((this.bill / this.people) + this.tip);
+        this.tip = ((this.bill * (5 / 100)) / this.people).toFixed(2);
+        this.total = ((this.bill / this.people) + Number(this.tip));
+
       } else if (this.second) {
-        this.tip = (this.bill * (10 / 100)) / this.people;
-        this.total = ((this.bill / this.people) + this.tip);
+        this.tip = ((this.bill * (10 / 100)) / this.people).toFixed(2);
+        this.total = ((this.bill / this.people) + Number(this.tip));
       } else if (this.third) {
-        this.tip = (this.bill * (15 / 100)) / this.people;
-        this.total = ((this.bill / this.people) + this.tip);
+        this.tip = ((this.bill * (15 / 100)) / this.people).toFixed(2);
+        this.total = ((this.bill / this.people) + Number(this.tip));
       } else if (this.fourth) {
-        this.tip = (this.bill * (25 / 100)) / this.people;
-        this.total = ((this.bill / this.people) + this.tip);
+        this.tip = ((this.bill * (25 / 100)) / this.people).toFixed(2);
+        this.total = ((this.bill / this.people) + Number(this.tip));
       } else if (this.fifth) {
-        this.tip = (this.bill * (50 / 100)) / this.people;
-        this.total = ((this.bill / this.people) + this.tip);
+        this.tip = ((this.bill * (50 / 100)) / this.people).toFixed(2);
+        this.total = ((this.bill / this.people) + Number(this.tip));
+      } else if (this.type == 'number' && this.people != null && this.people !== 0) {
+        this.tip = ((this.bill * (Number(this.val) / 100)) / this.people).toFixed(2);
+        this.total = ((this.bill / this.people) + Number(this.tip));
       }
     },
     selectCategory(num) {
@@ -124,21 +132,18 @@ export default {
         case 15:
           this.third = true;
           if (this.people > 0) {
-
             this.tip = (this.bill * (15 / 100)) / this.people;
           }
           break;
         case 25 :
           this.fourth = true;
           if (this.people > 0) {
-
             this.tip = (this.bill * (25 / 100)) / this.people;
           }
           break;
         case 50 :
           this.fifth = true;
           if (this.people > 0) {
-
             this.tip = (this.bill * (50 / 100)) / this.people;
           }
           break;

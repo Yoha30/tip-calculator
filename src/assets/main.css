@@ -51,7 +51,7 @@
     }
 
     .custom-text {
-        @apply font-bold text-dark-cyan text-base lg:text-xl;
+        @apply font-bold text-dark-cyan text-center text-base lg:text-xl;
     }
 
     .active-state {
