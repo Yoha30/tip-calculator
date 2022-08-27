@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer utilities {
+    @font-face {
+
+    }
+    @font-face {
+        font-display: swap;
+        font-family: monospace;
+        src: url("SpaceMono-Regular.ttf");
+    }
+    @font-face {
+        font-display: swap;
+        font-family: monospace;
+        src: url("SpaceMono-Bold.ttf");
+        font-weight: 500;
+        font-style: normal;
+    }
+    @font-face {
+        font-display: swap;
+        font-family: monospace;
+        src: url("SpaceMono-Bold.ttf");
+        font-weight: bold;
+        font-style: normal;
+    }
+    body {
+        font-family: monospace;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+
+    .percantage-text {
+        @apply font-bold text-white text-xl;
+    }
+
+    .percantage-card {
+        @apply w-[48%] md:w-[30%] lg:w-32 bg-dark-cyan my-2 py-2 rounded-md flex justify-center place-items-center cursor-pointer;
+    }
+
+    .custom-card {
+        @apply w-[48%] md:w-[30%] lg:w-32 bg-light-grey my-2 py-2 rounded-md flex justify-center place-items-center cursor-pointer;
+    }
+
+    .custom-text {
+        @apply font-bold text-dark-cyan text-base lg:text-xl;
+    }
+
+    .active-state {
+        @apply bg-strong-cyan text-dark-cyan;
+    }
+}
